@@ -1,12 +1,55 @@
-# HaTiSo Setup Guide
+# HaTiSo AI Extensions - Setup Guide
 
-This guide explains how to download, install, configure, and run the HaTiSo AI Hate Speech Detection System.
+This guide explains how to download, install, configure, and run the HaTiSo AI Extensions project.
 
 ---
 
-## 1. Requirements
+## 1. Introduction
 
-Before starting, install:
+HaTiSo AI Extensions is an AI-based hate speech detection system designed to analyze social media comments using a transformer-based language model.
+
+The system combines:
+
+- RoBERTa for text classification
+- Flask for the backend API
+- LIME for Explainable AI
+- SQLite for prediction history
+- JavaScript, HTML, and CSS for the interface
+- Chrome Extension for browser-based Facebook comment analysis
+
+The system can classify comments into three categories:
+
+- **Hate Speech**
+- **Offensive Language**
+- **Neither**
+
+---
+
+# 2. System Workflow
+
+The basic workflow is:
+
+```text
+Facebook Comment
+       ↓
+Chrome Extension
+       ↓
+Flask API
+       ↓
+RoBERTa Model
+       ↓
+Prediction
+       ↓
+LIME Explanation
+       ↓
+Result
+```
+
+---
+
+# 3. Requirements
+
+Before installing HaTiSo, make sure the computer has:
 
 - Python 3.10 or newer
 - Git
@@ -15,76 +58,82 @@ Before starting, install:
 
 ---
 
-## 2. Download the Project
+# 4. Download the Project
 
-Open Command Prompt (CMD) and run:
+Open Command Prompt (CMD).
+
+Clone the repository:
 
 ```cmd
-git clone https://github.com/nohannah/HateSpeechDetector.git
+git clone https://github.com/nohannah/Hatiso_AI-Extensions.git
 ```
 
 Enter the project folder:
 
 ```cmd
-cd HateSpeechDetector
+cd Hatiso_AI-Extensions
 ```
 
 ---
 
-## 3. Create a Python Virtual Environment
+# 5. Create a Python Virtual Environment
 
-Create a virtual environment inside the backend folder:
+Create a virtual environment:
 
 ```cmd
 python -m venv backend\venv
 ```
 
-This creates:
+This creates a local Python environment inside:
 
 ```text
 backend/
 └── venv/
 ```
 
-The `venv` folder is not included in GitHub because each user should create their own environment.
+The `venv` folder is intentionally not included in GitHub.
+
+Each user should create their own virtual environment.
 
 ---
 
-## 4. Activate the Virtual Environment
+# 6. Activate the Virtual Environment
 
-On Windows, run:
+On Windows:
 
 ```cmd
 backend\venv\Scripts\activate
 ```
 
-After activation, you should see:
+After activation, CMD should show something similar to:
 
 ```text
-(venv) C:\...\HateSpeechDetector>
+(venv) C:\...\Hatiso_AI-Extensions>
 ```
 
 ---
 
-## 5. Install Required Packages
+# 7. Install Dependencies
 
-Make sure the virtual environment is activated.
-
-Then run:
+After activating the virtual environment, install the required Python packages:
 
 ```cmd
 pip install -r requirements.txt
 ```
 
-This installs the Python libraries required by HaTiSo.
+If `pip` does not work, use:
+
+```cmd
+python -m pip install -r requirements.txt
+```
 
 ---
 
-## 6. Model Setup
+# 8. Model Setup
 
-The trained RoBERTa model is not included directly in this GitHub repository because trained transformer models can be very large.
+The trained RoBERTa model is not included directly in the GitHub repository because transformer model files can be very large.
 
-Before running the application, place the required model files in the model directory specified by the project.
+The required model must be placed in the model directory expected by the backend.
 
 Example:
 
@@ -92,40 +141,42 @@ Example:
 backend/
 └── saved_model/
     ├── config.json
-    ├── tokenizer_config.json
     ├── tokenizer.json
+    ├── tokenizer_config.json
     └── model files
 ```
 
-Make sure the model path used by the Python code matches the location of the model.
+Make sure the model path used by the backend matches the location of the downloaded model.
+
+> **Important:** The application cannot perform predictions without the required trained model.
 
 ---
 
-## 7. Start the Flask Backend
+# 9. Start the Flask Backend
 
-From the main project folder, activate the environment:
+From the project root, activate the virtual environment:
 
 ```cmd
 backend\venv\Scripts\activate
 ```
 
-Then start the Flask server:
+Start the Flask application:
 
 ```cmd
 python backend\app.py
 ```
 
-If successful, the backend should run at:
+The backend should run at:
 
 ```text
 http://127.0.0.1:5000
 ```
 
-Keep the CMD window open while using HaTiSo.
+Keep this CMD window open while using the Chrome extension.
 
 ---
 
-## 8. Test the Backend
+# 10. Test the Backend
 
 Open Google Chrome and visit:
 
@@ -133,11 +184,11 @@ Open Google Chrome and visit:
 http://127.0.0.1:5000
 ```
 
-The HaTiSo web application should appear.
+If the backend is running correctly, the HaTiSo web interface should load.
 
 ---
 
-## 9. Install the Chrome Extension
+# 11. Install the Chrome Extension
 
 Open Google Chrome.
 
@@ -149,7 +200,7 @@ chrome://extensions/
 
 ### Step 1
 
-Enable:
+Turn on:
 
 **Developer mode**
 
@@ -161,17 +212,26 @@ Click:
 
 ### Step 3
 
-Select:
+Select the project's:
 
 ```text
-HateSpeechDetector/extension
+extension
 ```
 
-The HaTiSo extension should now appear in your installed extensions.
+folder.
+
+For example:
+
+```text
+Hatiso_AI-Extensions/
+└── extension/
+```
+
+The HaTiSo extension should now appear in Chrome.
 
 ---
 
-## 10. Use HaTiSo on Facebook
+# 12. Use HaTiSo on Facebook
 
 Make sure the Flask backend is running.
 
@@ -180,156 +240,61 @@ Then:
 1. Open Facebook.
 2. Open a page containing comments.
 3. Find a comment.
-4. The HaTiSo Chrome extension analyzes the comment.
+4. The Chrome extension detects the comment.
 5. The comment is sent to the Flask API.
-6. The RoBERTa model predicts the category.
-7. The result is returned to the extension.
-8. The prediction and confidence are displayed.
+6. RoBERTa analyzes the comment.
+7. The prediction is returned.
+8. The result is displayed to the user.
 
 ---
 
-## 11. Prediction Categories
+# 13. Prediction Categories
 
-HaTiSo classifies comments into three categories:
+HaTiSo provides three classification categories.
 
-### Hate Speech
+## Hate Speech
 
-Content containing hateful or discriminatory language.
+The comment contains hateful or discriminatory content.
 
-### Offensive Language
+## Offensive Language
 
-Insulting, abusive, or offensive language that may not necessarily constitute hate speech.
+The comment contains insulting, abusive, or offensive language but may not necessarily constitute hate speech.
 
-### Neither
+## Neither
 
-Comments that do not contain hate speech or offensive language.
-
----
-
-## 12. Explainable AI
-
-HaTiSo uses LIME to help explain model predictions.
-
-LIME identifies words or parts of the input that contributed to the prediction.
-
-The system can therefore provide not only a prediction but also an explanation of the prediction.
+The comment does not contain hate speech or offensive language.
 
 ---
 
-## 13. Troubleshooting
+# 14. Explainable AI with LIME
 
-### Problem: `python` is not recognized
+HaTiSo uses LIME (Local Interpretable Model-Agnostic Explanations) to help explain individual predictions.
 
-Install Python and make sure Python is added to the Windows PATH.
+LIME identifies words or parts of the input that contribute to the model's prediction.
 
-Check Python:
-
-```cmd
-python --version
-```
+This allows users to understand not only the prediction but also some of the reasons behind it.
 
 ---
 
-### Problem: `pip` is not recognized
+# 15. Prediction History
 
-Try:
+HaTiSo uses SQLite to store prediction history.
 
-```cmd
-python -m pip --version
-```
+The system can store information such as:
 
-Then install packages using:
+- Comment
+- Prediction
+- Confidence
+- Timestamp
 
-```cmd
-python -m pip install -r requirements.txt
-```
-
----
-
-### Problem: `ModuleNotFoundError`
-
-Make sure the virtual environment is activated:
-
-```cmd
-backend\venv\Scripts\activate
-```
-
-Then install the dependencies:
-
-```cmd
-pip install -r requirements.txt
-```
+The database is generated locally and is not stored in GitHub.
 
 ---
 
-### Problem: Flask does not start
-
-Make sure you are in the project root:
+# 16. Project Structure
 
 ```text
-HateSpeechDetector
-```
-
-Then run:
-
-```cmd
-python backend\app.py
-```
-
----
-
-### Problem: Chrome extension cannot be loaded
-
-Go to:
-
-```text
-chrome://extensions/
-```
-
-Make sure:
-
-- Developer mode is enabled.
-- You selected the `extension` folder.
-- `manifest.json` exists inside the extension folder.
-
----
-
-### Problem: Prediction does not work
-
-Check that:
-
-1. The Flask backend is running.
-2. The model files are available.
-3. The model path is correct.
-4. The Chrome extension is loaded.
-5. The browser can connect to:
-
-```text
-http://127.0.0.1:5000
-```
-
----
-
-## 14. Stopping the Application
-
-To stop the Flask server, go to the CMD window running Flask and press:
-
-```text
-CTRL + C
-```
-
-To deactivate the virtual environment:
-
-```cmd
-deactivate
-```
-
----
-
-# Project Structure
-
-```text
-HateSpeechDetector/
+Hatiso_AI-Extensions/
 │
 ├── backend/
 │   ├── database/
@@ -354,9 +319,125 @@ HateSpeechDetector/
 
 ---
 
-# Development
+# 17. Troubleshooting
 
-If you make changes to the project:
+## Python is not recognized
+
+Check Python:
+
+```cmd
+python --version
+```
+
+If Python is not recognized, install Python and make sure it is added to the Windows PATH.
+
+---
+
+## pip is not recognized
+
+Try:
+
+```cmd
+python -m pip --version
+```
+
+Then:
+
+```cmd
+python -m pip install -r requirements.txt
+```
+
+---
+
+## ModuleNotFoundError
+
+Make sure the virtual environment is activated:
+
+```cmd
+backend\venv\Scripts\activate
+```
+
+Then:
+
+```cmd
+pip install -r requirements.txt
+```
+
+---
+
+## Flask does not start
+
+Make sure you are in the project root:
+
+```text
+Hatiso_AI-Extensions
+```
+
+Then run:
+
+```cmd
+python backend\app.py
+```
+
+---
+
+## Chrome extension cannot be loaded
+
+Open:
+
+```text
+chrome://extensions/
+```
+
+Check that:
+
+- Developer mode is enabled.
+- You selected the `extension` folder.
+- `manifest.json` exists inside the extension folder.
+
+---
+
+## Prediction does not work
+
+Check that:
+
+1. Flask is running.
+2. The trained RoBERTa model is available.
+3. The model path is correct.
+4. The Chrome extension is enabled.
+5. The backend is accessible at:
+
+```text
+http://127.0.0.1:5000
+```
+
+---
+
+# 18. Stopping HaTiSo
+
+To stop Flask:
+
+```text
+CTRL + C
+```
+
+To deactivate the virtual environment:
+
+```cmd
+deactivate
+```
+
+---
+
+# 19. Development Guide
+
+Before making changes, get the latest version:
+
+```cmd
+git pull origin main
+```
+
+Check your changes:
 
 ```cmd
 git status
@@ -368,7 +449,7 @@ Add your changes:
 git add .
 ```
 
-Commit:
+Create a commit:
 
 ```cmd
 git commit -m "Describe your changes"
@@ -382,12 +463,13 @@ git push
 
 ---
 
-# Important Note
+# 20. Important Files Not Stored in GitHub
 
-The following files are intentionally not stored in GitHub:
+The following are intentionally excluded:
 
 ```text
 venv/
+.venv/
 __pycache__/
 *.pyc
 .env
@@ -397,12 +479,44 @@ backend/trained_model/
 backend/saved_model/
 ```
 
-These files are either generated automatically, contain local information, or may be too large for a normal GitHub repository.
+These files are either generated locally, contain private information, or may be too large for a normal GitHub repository.
 
 ---
 
-# HaTiSo
+# 21. Quick Start
 
-**AI-Based Hate Speech Detection System**
+For experienced users:
+
+```cmd
+git clone https://github.com/nohannah/Hatiso_AI-Extensions.git
+
+cd Hatiso_AI-Extensions
+
+python -m venv backend\venv
+
+backend\venv\Scripts\activate
+
+pip install -r requirements.txt
+
+python backend\app.py
+```
+
+Then open:
+
+```text
+http://127.0.0.1:5000
+```
+
+and load the `extension` folder through:
+
+```text
+chrome://extensions/
+```
+
+---
+
+# HaTiSo AI Extensions
+
+**AI-Based Hate Speech Detection Using RoBERTa and Explainable AI**
 
 Developed for educational and research purposes.
