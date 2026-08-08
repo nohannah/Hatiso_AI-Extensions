@@ -1,4 +1,4 @@
-# HaTiSo - AI Hate Speech Detection System
+# HaTiSo - AI Hate Speech Detection System (Software Course)
 
 ## Introduction
 
