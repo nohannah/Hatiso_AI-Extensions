@@ -4,6 +4,7 @@
 
 HaTiSo is an AI-based hate speech detection system designed to identify and classify harmful comments from social media content.
 
+Before decided choosing RoBERTa model to analyze, there are 3 models have been train which are BERT, RoBERTa and DistilBERT Model. RoBERTa got the best accuacy and perfomace. 
 The system uses a transformer-based RoBERTa model to analyze text and classify comments into three categories:
 
 - Hate Speech
