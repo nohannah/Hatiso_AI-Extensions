@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "HaTiSo",
+  "version": "1.0",
+
+  "description": "AI-powered Facebook Hate Speech Detector",
+
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "http://127.0.0.1:5000/*",
+    "https://www.facebook.com/*"
+  ],
+
+  "action": {
+    "default_popup": "popup.html"
+  },
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+"matches":[
+"https://www.facebook.com/*"
+],
+
+"css":[
+"hatiso_panel.css"
+],
+
+"js":[
+"content.js"
+]
+
+}
+  ]
+}

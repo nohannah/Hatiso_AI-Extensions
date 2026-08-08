@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HateShield AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+HaTiSo
+</div>
+
+<ul>
+<li><a href="/">🏠 Home</a></li>
+<li><a href="/history-page">📜 History</a></li>
+<li><a href="/dashboard">📊 Dashboard</a></li>
+</ul>
+
+</nav>
+
+<div class="feed">
+
+<div class="postBox">
+
+<h2>What's on your mind?</h2>
+
+<textarea
+id="comment"
+placeholder="Write a Facebook comment..."></textarea>
+
+<button id="postBtn" type="button">
+Post Comment
+</button>
+
+</div>
+
+<div id="postResult"></div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<script>
+
+document.getElementById("postBtn").addEventListener("click", analyzeComment);
+
+</script>
+
+</body>
+
+</html>

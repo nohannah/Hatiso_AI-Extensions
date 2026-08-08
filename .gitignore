@@ -1,0 +1,35 @@
+# Python cache
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyc
+
+# Virtual environments
+venv/
+.venv/
+backend/venv/
+
+# VS Code
+.vscode/
+
+# Environment files
+.env
+.env.*
+
+# Node
+node_modules/
+
+# Logs
+*.log
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Trained models
+backend/trained_model/
+backend/saved_model/

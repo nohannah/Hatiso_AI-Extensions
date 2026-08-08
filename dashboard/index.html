@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>HateShield AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+
+        HateShield AI
+
+    </div>
+
+    <ul>
+
+        <li><a href="/">🏠 Home</a></li>
+
+        <li><a href="/history-page">📜 History</a></li>
+
+        <li><a href="/dashboard">📊 Dashboard</a></li>
+
+    </ul>
+
+</nav>
+
+<div class="container">
+
+<h1>AI Hate Speech Detector</h1>
+
+<textarea
+id="comment"
+placeholder="Type a Facebook comment..."></textarea>
+
+<button onclick="analyzeComment()">
+
+Analyze Comment
+
+</button>
+
+<div id="result" class="result">
+
+<h2 id="title"></h2>
+
+<h3 id="prediction"></h3>
+
+<p>
+
+Confidence
+
+<span id="confidence"></span>%
+
+</p>
+
+<div class="progress">
+
+<div class="bar" id="bar"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

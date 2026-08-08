@@ -1,0 +1,180 @@
+#hatiso-ai-panel{
+
+    position:fixed;
+    bottom:20px;
+    right:20px;
+
+    width:340px;
+
+    background:white;
+
+    border-radius:12px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+    z-index:999999;
+
+    font-family:Arial,sans-serif;
+
+    overflow:hidden;
+
+    border:1px solid #ddd;
+
+    animation:slideUp .3s ease;
+
+}
+
+@keyframes slideUp{
+
+from{
+
+transform:translateY(40px);
+opacity:0;
+
+}
+
+to{
+
+transform:translateY(0);
+opacity:1;
+
+}
+
+}
+
+#hatiso-ai-panel h2{
+
+margin:0;
+padding:15px;
+
+background:#2563eb;
+
+color:white;
+
+font-size:18px;
+
+}
+
+#hatiso-close{
+
+position:absolute;
+
+top:12px;
+right:15px;
+
+color:white;
+
+cursor:pointer;
+
+font-size:18px;
+
+font-weight:bold;
+
+}
+
+.hatiso-section{
+
+padding:12px 15px;
+
+border-bottom:1px solid #eee;
+
+}
+
+.hatiso-label{
+
+font-weight:bold;
+
+margin-bottom:6px;
+
+}
+
+.hatiso-result{
+
+color:#333;
+
+word-wrap:break-word;
+
+}
+
+#suggestion{
+
+background:#f5f5f5;
+
+padding:10px;
+
+border-radius:8px;
+
+margin-top:5px;
+
+margin-bottom:10px;
+
+}
+
+/* ==========================
+   Buttons
+========================== */
+
+.hatiso-btn{
+
+width:100%;
+
+padding:10px;
+
+margin-top:8px;
+
+border:none;
+
+border-radius:8px;
+
+cursor:pointer;
+
+font-size:14px;
+
+font-weight:bold;
+
+transition:.25s;
+
+}
+
+/* Green button */
+
+#useSuggestion{
+
+background:#16a34a;
+
+color:white;
+
+}
+
+#useSuggestion:hover{
+
+background:#15803d;
+
+}
+
+/* Gray button */
+
+#keepOriginal{
+
+background:#e5e7eb;
+
+color:#111827;
+
+}
+
+#keepOriginal:hover{
+
+background:#d1d5db;
+
+}
+.hatiso-btn:disabled{
+
+    background:#22c55e;
+
+    color:white;
+
+    cursor:default;
+
+    opacity:1;
+
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Dashboard</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+
+HateShield AI
+
+</div>
+
+<ul>
+
+<li><a href="/">🏠 Home</a></li>
+
+<li><a href="/history-page">📜 History</a></li>
+
+<li><a href="/dashboard">📊 Dashboard</a></li>
+
+</ul>
+
+</nav>
+
+<div class="container">
+
+<h1>Dashboard</h1>
+
+<div class="cards">
+
+<div class="card">
+
+<h2 id="total">0</h2>
+
+<p>Total Comments</p>
+
+</div>
+
+<div class="card safeCard">
+
+<h2 id="safe">0</h2>
+
+<p>Safe</p>
+
+</div>
+
+<div class="card offensiveCard">
+
+<h2 id="offensive">0</h2>
+
+<p>Offensive</p>
+
+</div>
+
+<div class="card hateCard">
+
+<h2 id="hate">0</h2>
+
+<p>Hate Speech</p>
+
+</div>
+
+</div>
+
+<h2>
+
+Recent Predictions
+
+</h2>
+
+<div id="recent">
+
+Loading...
+
+</div>
+
+</div>
+
+<script>
+
+fetch("/history")
+
+.then(res=>res.json())
+
+.then(data=>{
+
+let safe=0;
+
+let offensive=0;
+
+let hate=0;
+
+document.getElementById("total").innerHTML=data.length;
+
+data.forEach(item=>{
+
+if(item.prediction=="Neither")
+safe++;
+
+else if(item.prediction=="Offensive Language")
+offensive++;
+
+else if(item.prediction=="Hate Speech")
+hate++;
+
+});
+
+document.getElementById("safe").innerHTML=safe;
+
+document.getElementById("offensive").innerHTML=offensive;
+
+document.getElementById("hate").innerHTML=hate;
+
+let html="<table border='1' width='100%'>";
+
+html+="<tr><th>Comment</th><th>Prediction</th></tr>";
+
+data.slice(0,10).forEach(item=>{
+
+html+=`
+
+<tr>
+
+<td>${item.comment}</td>
+
+<td>${item.prediction}</td>
+
+</tr>
+
+`;
+
+});
+
+html+="</table>";
+
+document.getElementById("recent").innerHTML=html;
+
+})
+
+</script>
+
+</body>
+
+</html>

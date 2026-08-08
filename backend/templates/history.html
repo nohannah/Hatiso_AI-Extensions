@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>History</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+
+HateShield AI
+
+</div>
+
+<ul>
+
+<li><a href="/">🏠 Home</a></li>
+
+<li><a href="/history-page">📜 History</a></li>
+
+<li><a href="/dashboard">📊 Dashboard</a></li>
+
+</ul>
+
+</nav>
+
+<div class="container">
+
+<h1>Prediction History</h1>
+
+<div id="history">
+
+Loading...
+
+</div>
+
+</div>
+
+<script>
+
+fetch("/history")
+
+.then(r=>r.json())
+
+.then(data=>{
+
+let html="<table border='1' width='100%'>";
+
+html+="<tr><th>ID</th><th>Comment</th><th>Prediction</th><th>Confidence</th></tr>";
+
+data.forEach(item=>{
+
+html+=`<tr>
+
+<td>${item.id}</td>
+
+<td>${item.comment}</td>
+
+<td>${item.prediction}</td>
+
+<td>${item.confidence}%</td>
+
+</tr>`;
+
+});
+
+html+="</table>";
+
+document.getElementById("history").innerHTML=html;
+
+});
+
+</script>
+
+</body>
+
+</html>
