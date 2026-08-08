@@ -132,6 +132,7 @@ python -m pip install -r requirements.txt
 # 8. Model Setup
 
 The trained RoBERTa model is not included directly in the GitHub repository because transformer model files can be very large.
+You can find datset form https://huggingface.co/datasets/tdavidson/hate_speech_offensive
 
 The required model must be placed in the model directory expected by the backend.
 
